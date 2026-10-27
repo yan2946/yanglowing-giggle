@@ -5,9 +5,21 @@ __pycache__/
 
 # 虚拟环境
 venv/
+.venv/
+env/
+
+# 环境变量与密钥（绝不入库）
+.env
+.env.*
+!.env.example
 
 # 运行时数据库（由 init_db.py 生成）
 blog.db
+*.sqlite3
+instance/
+
+# 静态导出产物（由 freeze.py 生成）
+dist/
 
 # macOS
 .DS_Store
