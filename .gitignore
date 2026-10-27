@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# 虚拟环境
+venv/
+
+# 运行时数据库（由 init_db.py 生成）
+blog.db
+
+# macOS
+.DS_Store

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ blog_title }}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<header class="site-header">
+    <div class="container header-inner">
+        <a class="site-logo" href="{{ url_for('blog.index') }}">
+            <img class="site-logo__img" src="{{ url_for('static', filename='images/logo.svg') }}" alt="{{ blog_title }}">
+            <span class="site-logo__text">{{ blog_title }}</span>
+        </a>
+        <nav class="site-nav">
+            <a href="{{ url_for('blog.index') }}">首页</a>
+            <a href="{{ url_for('blog.archives') }}">归档</a>
+            <a href="{{ url_for('blog.about') }}">关于</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container main-content">
+    {% block content %}{% endblock %}
+</main>
+
+<footer class="site-footer">
+    <div class="container">
+        <p>&copy; {{ 2026 }} {{ blog_author }} · 由 Flask 强力驱动</p>
+    </div>
+</footer>
+
+{% block scripts %}{% endblock %}
+</body>
+</html>

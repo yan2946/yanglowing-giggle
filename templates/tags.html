@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}标签 · {{ blog_title }}{% endblock %}
+
+{% block content %}
+<section class="tags-page">
+    <h1 class="list-title">标签</h1>
+    {% if tags %}
+    <p class="tags-page__count">共 {{ tags|length }} 个标签</p>
+    <div class="tag-cloud">
+        {% for t in tags %}
+        <a class="tag tag--lg" href="{{ url_for('blog.show_tag', name=t.name) }}">
+            #{{ t.name }}<span class="tag__count">{{ t.posts|length }}</span>
+        </a>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty">
+        <p>还没有任何标签。</p>
+    </div>
+    {% endif %}
+</section>
+{% endblock %}

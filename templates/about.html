@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="about">
+    <h1 class="about__title">关于我</h1>
+    <p class="about__bio">{{ config.BLOG_AUTHOR_BIO }}</p>
+
+    <div class="about__links">
+        <a class="btn" href="{{ config.BLOG_AUTHOR_GITHUB }}" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn btn--ghost" href="mailto:{{ config.BLOG_AUTHOR_EMAIL }}">Email</a>
+    </div>
+
+    <div class="about__tech">
+        <h2>技术栈</h2>
+        <ul class="tech-list">
+            <li>Python / Flask / FastAPI</li>
+            <li>PostgreSQL / Redis</li>
+            <li>Docker / Kubernetes</li>
+            <li>JavaScript / Vue</li>
+        </ul>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}归档 · {{ blog_title }}{% endblock %}
+
+{% block content %}
+<section class="archives">
+    <h1 class="list-title">归档</h1>
+    <p class="archives__count">共 {{ posts | length }} 篇文章</p>
+    <ul class="archives__list">
+        {% for post in posts %}
+        <li class="archives__item">
+            <span class="archives__date">{{ post.created_at.strftime('%Y-%m-%d') }}</span>
+            <a class="archives__link" href="{{ url_for('blog.post_detail', slug=post.slug) }}">{{ post.title }}</a>
+            {% if post.category %}
+            <span class="archives__category">{{ post.category.name }}</span>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+{% endblock %}
