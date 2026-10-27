@@ -6,6 +6,8 @@
 - 分类/标签页传 title=...，显示标题、不显示横幅。
 已发布文章的分页查询逻辑统一收敛到 _paginate_published()。
 """
+from datetime import datetime
+
 from flask import Blueprint, render_template, request
 from sqlalchemy import desc
 
@@ -28,6 +30,7 @@ def inject_globals():
         'blog_subtitle': Config.BLOG_SUBTITLE,
         'blog_author': Config.BLOG_AUTHOR,
         'categories': _get_categories,
+        'current_year': datetime.now().year,
     }
 
 
