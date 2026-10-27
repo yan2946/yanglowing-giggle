@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %}404 · 页面不存在 · {{ blog_title }}{% endblock %}
+{% block description %}这个页面不存在，返回首页继续浏览。{% endblock %}
+
+{% block content %}
+<section class="not-found">
+    <p class="not-found__code">404</p>
+    <h1 class="not-found__title">这个页面走丢了</h1>
+    <p class="not-found__desc">
+        可能是链接写错了，或者这篇文章已经被删掉。<br>
+        你可以回首页看看，或者去归档里找找。
+    </p>
+    <p class="not-found__actions">
+        <a class="not-found__btn" href="{{ url_for('blog.index') }}">返回首页</a>
+        <a class="not-found__link" href="{{ url_for('blog.archives') }}">归档</a>
+        <a class="not-found__link" href="{{ url_for('blog.tags') }}">标签</a>
+    </p>
+</section>
+
+<style>
+    .not-found {
+        text-align: center;
+        padding: 96px 0 120px;
+    }
+    .not-found__code {
+        font-size: 96px;
+        line-height: 1;
+        font-weight: 700;
+        margin: 0 0 16px;
+        color: #7d4fb2;
+        letter-spacing: 2px;
+    }
+    .not-found__title {
+        font-size: 24px;
+        margin: 0 0 12px;
+        color: #222;
+    }
+    .not-found__desc {
+        font-size: 15px;
+        line-height: 1.8;
+        color: #6b6b6b;
+        margin: 0 0 32px;
+    }
+    .not-found__actions {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    .not-found__btn {
+        display: inline-block;
+        padding: 10px 26px;
+        border-radius: 999px;
+        background: #7d4fb2;
+        color: #fff;
+        text-decoration: none;
+        font-size: 15px;
+    }
+    .not-found__btn:hover {
+        background: #6a3f9c;
+    }
+    .not-found__link {
+        font-size: 15px;
+        color: #7d4fb2;
+        text-decoration: none;
+    }
+    .not-found__link:hover {
+        text-decoration: underline;
+    }
+    @media (max-width: 640px) {
+        .not-found { padding: 64px 0 80px; }
+        .not-found__code { font-size: 72px; }
+        .not-found__title { font-size: 20px; }
+    }
+</style>
+{% endblock %}

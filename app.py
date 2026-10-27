@@ -6,7 +6,7 @@ create_app() 组装应用实例：加载 Config 配置、初始化 SQLAlchemy、
 完成建表与示例文章写入。
 """
 import markdown
-from flask import Flask
+from flask import Flask, render_template
 from markupsafe import Markup
 
 import config
@@ -31,6 +31,16 @@ def create_app():
 
     # 注册蓝图
     app.register_blueprint(blog_bp)
+
+    # 向所有模板注入站点公网地址（供 og:url / og:image 拼绝对路径）
+    @app.context_processor
+    def inject_site_url():
+        return {'site_url': app.config.get('SITE_URL', '')}
+
+    # 自定义 404 页：静态托管时会导出成 404.html
+    @app.errorhandler(404)
+    def handle_not_found(error):
+        return render_template('404.html'), 404
 
     return app
 
