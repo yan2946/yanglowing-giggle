@@ -9,8 +9,12 @@ class Config:
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(BASE_DIR, 'blog.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-    # 密钥（生产环境请替换为强随机值）
-    SECRET_KEY = 'dev-secret-key-change-in-production'
+    # 密钥：优先读环境变量，本地开发才回退到默认值。
+    # 部署到云端后必须在控制台配置 SECRET_KEY，不要把真实密钥写回代码。
+    SECRET_KEY = os.environ.get('SECRET_KEY', 'dev-secret-key-change-in-production')
+
+    # 站点公网地址（部署后通过环境变量 SITE_URL 注入，用于 og:url / og:image 绝对路径）
+    SITE_URL = os.environ.get('SITE_URL', '').rstrip('/')
 
     # 博客基础信息
     BLOG_TITLE = '技术随笔'
